@@ -10,11 +10,10 @@ export default (env: IBuildEnv) => {
         build: path.resolve(__dirname, 'build'),
         html: path.resolve(__dirname, 'public', 'index.html'),
         src: path.resolve(__dirname, 'src'),
-    }
+    };
 
-    const mode: TBuildMode = env.mode || 'development'
+    const mode: TBuildMode = env.mode || 'development';
     const PORT = env.port || 3000;
-
     const isDevelopment: boolean = mode === 'development';
 
     return buildWebpackConfig({
