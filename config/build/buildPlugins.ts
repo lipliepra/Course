@@ -13,6 +13,9 @@ export function buildPlugins(options: IBuildOptions): webpack.WebpackPluginInsta
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[name].[contenthash:8].css',
+        }),
+        new webpack.DefinePlugin({
+            __IS_DEVELOPMENT__: JSON.stringify(options.isDevelopment),
         })
     ];
 }
