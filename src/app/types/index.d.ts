@@ -17,3 +17,5 @@ declare module '*.jpeg';
 declare module '*.png';
 
 declare module '*.json';
+
+declare const __IS_DEVELOPMENT__: boolean;
