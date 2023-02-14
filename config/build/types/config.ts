@@ -12,6 +12,7 @@ export interface IBuildOptions {
     paths: IBuildPaths;
     isDevelopment: boolean;
     port: number;
+    hot?: boolean;
 }
 
 export interface IBuildEnv {
