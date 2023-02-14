@@ -1,7 +1,7 @@
-import webpack from "webpack";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import webpack from 'webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-import {IBuildOptions} from "./types/config";
+import { IBuildOptions } from './types/config';
 
 export function buildLoaders(options: IBuildOptions): webpack.RuleSetRule[] {
     const typeScriptLoader = {
@@ -10,14 +10,35 @@ export function buildLoaders(options: IBuildOptions): webpack.RuleSetRule[] {
         exclude: /node_modules/,
     };
 
+    const babelLoader = {
+        test: /\.(js|jsx|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+            loader: 'babel-loader',
+            options: {
+                presets: ['@babel/preset-env'],
+                plugins: [
+                    [
+                        'i18next-extract',
+                        {
+                            locales: ['ru', 'en', 'de', 'it'],
+                            valueAsDefaultKey: true,
+                            outputPath: 'public/locales/{{locale}}/{{ns}}.json',
+                        },
+                    ],
+                ],
+            },
+        },
+    };
+
     const cssLoader = {
         test: /\.s[ac]ss$/i,
         use: [
             options.isDevelopment
-                ? "style-loader"
+                ? 'style-loader'
                 : MiniCssExtractPlugin.loader,
             {
-                loader: "css-loader",
+                loader: 'css-loader',
                 options: {
                     modules: {
                         auto: (resPath: string) => Boolean(resPath.includes('.module.')),
@@ -25,9 +46,9 @@ export function buildLoaders(options: IBuildOptions): webpack.RuleSetRule[] {
                             ? '[path][name]__[local]'
                             : '[hash:base64:8]',
                     },
-                }
+                },
             },
-            "sass-loader",
+            'sass-loader',
         ],
     };
 
@@ -46,9 +67,10 @@ export function buildLoaders(options: IBuildOptions): webpack.RuleSetRule[] {
     };
 
     return [
-        typeScriptLoader,
-        cssLoader,
         fileLoader,
         svgLoader,
+        babelLoader,
+        typeScriptLoader,
+        cssLoader,
     ];
 }

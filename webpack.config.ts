@@ -1,8 +1,8 @@
 import webpack from 'webpack';
-import path from "path";
+import path from 'path';
 
-import {buildWebpackConfig} from "./config/build/buildWebpackConfig";
-import {IBuildEnv, IBuildPaths, TBuildMode} from "./config/build/types/config";
+import { buildWebpackConfig } from './config/build/buildWebpackConfig';
+import { IBuildEnv, IBuildPaths, TBuildMode } from './config/build/types/config';
 
 export default (env: IBuildEnv) => {
     const paths: IBuildPaths = {
