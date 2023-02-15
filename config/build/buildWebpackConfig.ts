@@ -1,20 +1,20 @@
-import webpack from "webpack";
+import webpack from 'webpack';
 
-import {buildPlugins} from "./buildPlugins";
-import {buildLoaders} from "./buildLoaders";
-import {buildResolvers} from "./buildResolvers";
-import {buildDevServer} from "./buildDevServer";
+import { buildPlugins } from './buildPlugins';
+import { buildLoaders } from './buildLoaders';
+import { buildResolvers } from './buildResolvers';
+import { buildDevServer } from './buildDevServer';
 
-import {IBuildOptions} from "./types/config";
+import { IBuildOptions } from './types/config';
 
 export function buildWebpackConfig(options: IBuildOptions): webpack.Configuration {
-    const {paths, mode, isDevelopment} = options;
+    const { paths, mode, isDevelopment } = options;
 
     return {
         mode,
         entry: paths.entry,
         output: {
-            filename: "[name].[contenthash].js",
+            filename: '[name].[contenthash].js',
             path: paths.build,
             clean: true,
         },
@@ -29,5 +29,5 @@ export function buildWebpackConfig(options: IBuildOptions): webpack.Configuratio
         devServer: isDevelopment
             ? buildDevServer(options)
             : undefined,
-    }
+    };
 }
