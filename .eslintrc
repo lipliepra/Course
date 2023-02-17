@@ -58,7 +58,7 @@
         "markupOnly": true
       }
     ],
-    "linebreak-style": "off",
+    //    "linebreak-style": "off",
     "no-unused-vars": "warn",
     "react/require-default-props": "off",
     "react/button-has-type": "off",
