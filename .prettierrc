@@ -10,6 +10,6 @@
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
   "arrowParens": "always",
-  "endOfLine": "lf",
-  "singleAttributePerLine": "as-needed"
+  "endOfLine": "cr"
+  //  "singleAttributePerLine": "true"
 }
